@@ -1,28 +1,21 @@
 <template>
-  <div class="item col-1" @dragstart="moveItem()">
+  <div class="item col-1">
     <img :src="itemData.url" alt="img" />
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive } from "vue";
 // import { itemService } from '../services/ItemService'
 export default {
-  name: 'Item',
-  props: ['itemData', 'roomId'],
+  name: "Item",
+  props: ["itemData", "roomId"],
   setup(props, { emit }) {
-    const state = reactive({})
-    function moveItem() {
-      // itemService.setItemToMove(props.itemData)
-      // emit to parent first way
+    const state = reactive({});
 
-      // use events to set data for 2nd way
-      event.dataTransfer.setData('item', JSON.stringify(props.itemData))
-      event.dataTransfer.setData('room', props.roomId)
-    }
-    return { state, moveItem }
-  }
-}
+    return {};
+  },
+};
 </script>
 
 <style scoped>
