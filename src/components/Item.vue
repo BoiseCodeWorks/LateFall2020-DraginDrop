@@ -8,17 +8,18 @@
 
 <script>
 import { reactive } from 'vue'
-// import { itemService } from '../services/ItemService'
+import { itemService } from '../services/ItemService'
 export default {
   name: 'Item',
   props: ['itemData', 'roomId'],
   setup(props, { emit }) {
     const state = reactive({})
     function moveItem() {
-      // itemService.setItemToMove(props.itemData)
+      // NOTE when the item is picked up this sets that item to the AppState so be stored for transfer later
+      itemService.setItemToMove(props.itemData)
 
-      event.dataTransfer.setData('item', JSON.stringify(props.itemData))
-      event.dataTransfer.setData('room', props.roomId)
+      // event.dataTransfer.setData('item', JSON.stringify(props.itemData))
+      // event.dataTransfer.setData('room', props.roomId)
     }
     return { state, moveItem }
   }

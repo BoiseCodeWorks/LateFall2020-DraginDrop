@@ -38,14 +38,15 @@ export default {
       itemToMove: computed(() => AppState.tempItem)
     })
     function moveItem() {
-      // const oldRoom = AppState.rooms.find(r => r.items.includes(state.itemToMove))
-      // itemService.moveItem(oldRoom.id, props.roomData.id)
+      // NOTE this way uses the AppState to transfer the data between Components
+      const oldRoom = AppState.rooms.find(r => r.items.includes(state.itemToMove))
+      itemService.moveItem(oldRoom.id, props.roomData.id)
 
-      const item = JSON.parse(event.dataTransfer.getData('item'))
-      const oldRoomId = event.dataTransfer.getData('room')
-      const newRoomId = props.roomData.id
-
-      itemService.moveItem2(oldRoomId, newRoomId, item)
+      // NOTE this way uses the event datatransfer to transfer the data
+      // const item = JSON.parse(event.dataTransfer.getData('item'))
+      // const oldRoomId = event.dataTransfer.getData('room')
+      // const newRoomId = props.roomData.id
+      // itemService.moveItem2(oldRoomId, newRoomId, item)
     }
     return { state, moveItem }
   }
