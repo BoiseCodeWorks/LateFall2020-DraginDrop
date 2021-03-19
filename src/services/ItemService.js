@@ -1,8 +1,10 @@
 import { AppState } from '../AppState'
 
 class ItemService {
-  setItemToMove(item) {
+  setItemToMove(item, oldRoomId) {
     AppState.tempItem = item
+    // your item will likely have the old room's id already on it.
+    AppState.tempItem.oldRoomId = oldRoomId
   }
 
   // NOTE the majority of these methods below could be replaced with PUT and GET requests to an api.  Just remember you will have to update the data on both rooms affected by the items moved.  Even with the Data being refreshed from PUT and GET requests, you could make a better user experience by only doing a PUT request and doing the updates on the client side, with similar methods bellow.

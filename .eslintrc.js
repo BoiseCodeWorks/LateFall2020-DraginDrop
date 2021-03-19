@@ -19,6 +19,7 @@ module.exports = {
   },
   rules: {
     'no-console': PROD ? ERROR : WARN,
+    'no-unused-vars': PROD ? ERROR : WARN,
     'no-debugger': PROD ? ERROR : WARN,
     'space-before-function-paren': [WARN, NEVER],
     'vue/max-attributes-per-line': [ERROR, {

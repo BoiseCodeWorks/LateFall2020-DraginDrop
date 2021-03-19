@@ -15,11 +15,10 @@ export default {
   setup(props, { emit }) {
     const state = reactive({})
     function moveItem() {
-      // NOTE when the item is picked up this sets that item to the AppState so be stored for transfer later
-      itemService.setItemToMove(props.itemData)
-
+      console.log('item picked up', props.itemData.name)
       // event.dataTransfer.setData('item', JSON.stringify(props.itemData))
-      // event.dataTransfer.setData('room', props.roomId)
+      // event.dataTransfer.setData('oldRoom', JSON.stringify(props.roomId))
+      itemService.setItemToMove(props.itemData, props.roomId)
     }
     return { state, moveItem }
   }

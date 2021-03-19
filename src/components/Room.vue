@@ -1,5 +1,6 @@
 <template>
   <div class="Rooms col-6 py-2"
+       draggable="true"
        dropzone="zone"
        @dragover.prevent
        @drop.prevent="moveItem"
@@ -38,15 +39,12 @@ export default {
       itemToMove: computed(() => AppState.tempItem)
     })
     function moveItem() {
-      // NOTE this way uses the AppState to transfer the data between Components
-      const oldRoom = AppState.rooms.find(r => r.items.includes(state.itemToMove))
-      itemService.moveItem(oldRoom.id, props.roomData.id)
-
-      // NOTE this way uses the event datatransfer to transfer the data
-      // const item = JSON.parse(event.dataTransfer.getData('item'))
-      // const oldRoomId = event.dataTransfer.getData('room')
-      // const newRoomId = props.roomData.id
-      // itemService.moveItem2(oldRoomId, newRoomId, item)
+    //   const item = JSON.parse(event.dataTransfer.getData('item'))
+    //   const oldRoomId = JSON.parse(event.dataTransfer.getData('oldRoom'))
+    //   console.log('item ' + item.name + ' dropped in', props.roomData.name, oldRoomId)
+    //   itemService.moveItem2(oldRoomId, props.roomData.id, item)
+      console.log('Appstate item', AppState.tempItem)
+      itemService.moveItem(state.itemToMove.oldRoomId, props.roomData.id)
     }
     return { state, moveItem }
   }
@@ -63,13 +61,13 @@ export default {
 }
 
 .item-enter-active,
-.item-leave-active{
-  transition: all .5s ease;
+.item-leave-active {
+  transition: all 0.5s ease;
 }
 
 .item-enter-from,
-.item-leave-to{
-  transform: translate(0px,-3vh);
+.item-leave-to {
+  transform: translate(0px, -3vh);
   opacity: 0;
 }
 </style>
